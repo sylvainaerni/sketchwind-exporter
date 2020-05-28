@@ -1,0 +1,76 @@
+/* some default styles to make the view more native like */
+
+html {
+  box-sizing: border-box;
+  background: transparent;
+
+    overflow: hidden;
+  cursor: default;
+
+  font-family: 'Inter', sans-serif;
+
+  background: #f2f2f2;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  /* Prevent the content from being selectionable */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.window-drag-handler {
+  height:30px;
+  cursor: move;
+}
+
+.content {
+  padding: 0 24px 24px 24px;
+}
+
+.logo {
+  width: 160px;
+  margin-bottom: 10px;
+  float: right;
+}
+
+h1 {
+  clear: right;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+
+.textarea-output {
+  width: 100%;
+  height: 200px;
+  background: white;
+  padding: 15px;
+
+  font-family: monospace;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.button {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 9px 14px;
+  background-color: #16BDCA;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+
+  color: white;
+}
+
+

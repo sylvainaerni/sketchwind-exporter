@@ -1,0 +1,59 @@
+/* some default styles to make the view more native like */
+
+html {
+  box-sizing: border-box;
+  background: transparent;
+
+  overflow: hidden;
+  cursor: default;
+
+  font-family: 'Inter', sans-serif;
+
+  background: #f2f2f2;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  /* Prevent the content from being selectionable */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.window-drag-handler {
+  height:30px;
+  cursor: move;
+}
+
+.content {
+  padding: 24px;
+}
+
+.logo {
+  width: 160px;
+  margin-bottom: 10px;
+  float: right;
+}
+
+h1 {
+  clear: right;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+
+.textarea-output {
+  width: 100%;
+  height: 200px;
+  background: white;
+}
+
+
