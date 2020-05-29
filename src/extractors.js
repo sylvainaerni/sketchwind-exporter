@@ -5,11 +5,11 @@ import { get } from 'lodash'
 // item[1] is the item itself             'gray'
 // item[2] is the key for variation       '900'
 export const extractNaming = (element)=>{
-  const item = element.name.replace(/\/\s*$/, '').split('/');
+  const [category, item, variation] = element.name.replace(/\/\s*$/, '').split('/');
   return {
-    ...item[0] && {category: item[0]},
-    ...item[1] && {item: item[1]},
-    ...item[2] && {variation: item[2]},
+    category: category,
+    item: item,
+    variation: variation
   }
 }
 
