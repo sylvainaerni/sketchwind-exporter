@@ -14,22 +14,11 @@ const theme = {}
 theme.colors = {}
 theme.fontSize = {}
 
-
-console.log("layerStyles.length", layerStyles.length);
-
-
 textStyles.forEach((style) => {
-
   if (style.styleType === 'Style') {
     var fontSize = style.style.fontSize
-
     var name = style.name.split("/")[0]
-
-    //console.log('fontSize', fontSize, name)
-    // console.log('test style', style)
   }
-
-
 });
 
 /*
@@ -54,25 +43,50 @@ textStyles.forEach((style) => {
 
 // get infos from each layer styles with a name starting with 'color/' or 'spacings/':
 layerStyles.forEach((layer) => {
-  // split layer name:            example: 'colors/gray/900'
-  // item[0] is the 'category'              'colors'
-  // item[1] is the item itself             'gray'
-  // item[2] is the key for variation       '900'
-
-  var item = layer.name.replace(/\/\s*$/, '').split('/');
-
-  //console.log(item[0])
-
-  if (item[0] === 'color') {
-    var color = layer.style.fills[0].color
+  let item = extractLayerData(layer)
+  if (item.category === 'color') {
+    let color = extractColorStyles(layer)
     if (color) {
       addColor(item, color)
     }
-
-  } else if (item[0] === 'spacing') {
-    addSpacing(item, 'mySizeHere')
+  } else if (layer.category === 'spacing') {
+    addSpacing(layer, 'mySizeHere')
   }
 });
+
+// split layer name and extract the data needed
+// example: 'colors/gray/900'
+// item[0] is the 'category'              'colors'
+// item[1] is the item itself             'gray'
+// item[2] is the key for variation       '900'
+function extractLayerData(layer){
+  const item = layer.name.replace(/\/\s*$/, '').split('/');
+  return {
+    ...item[0] && {category: item[0]},
+    ...item[1] && {item: item[1]},
+    ...item[2] && {variation: item[2]},
+  }
+}
+
+function extractStyles(layer) {
+  var delve = require('delve')
+  //unperformant af, need to find a way: let styles = clone(layer.style)
+  const styles = delve(layer,"styles") | null
+  const color = delve(styles,".fills[0].color") | null
+  const shadows = styles.shadows
+  console.log(delve(layer,"style"));
+  // assumption : we do not support multifill atm
+  return layer.styles | null
+}
+
+function extractColorStyles(layer) {
+  // assumption : we do not support multifill atm
+  // todo: delve this!
+  if(layer.style && layer.style.fills && layer.style.fills[0]) {
+    return layer.style.fills[0].color
+  }
+  return null
+}
 
 
 // stringify and remove unecessary double quotes
@@ -81,9 +95,10 @@ tailwindConfig = JSON.stringify(theme, null, "\t").replace(/"([^"]+)":/g, '$1:')
 
 function addColor(item, colorValue) {
   var newColor = {}
-  newColor.name = item[1]
-  newColor.variation = item[2]
+  newColor.name = item.category
+  newColor.variation = item.variation
   newColor.value = colorValue
+
   // create color object if color doesn't exist
   if (!(newColor.name in theme.colors)) theme.colors[newColor.name] = {}
   // create color variation if it exists
@@ -117,7 +132,7 @@ export default function () {
   })
 
   const webContents = browserWindow.webContents
-  const configExport = "theme: " + tailwindConfig
+  const configExport = "themed: " + tailwindConfig
 
   // print a message when the page loads
   webContents.on('did-finish-load', () => {
@@ -145,4 +160,9 @@ export function onShutdown() {
   if (existingWebview) {
     existingWebview.close()
   }
+}
+
+
+function clone(json) {
+  return JSON.parse(JSON.stringify(json))
 }

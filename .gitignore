@@ -14,3 +14,6 @@ npm-debug.log
 
 # sketch
 # sketch-assets
+Sketchwind exporter.sketchplugin/Contents/
+Sketchwinexporter.sketchplugin/Contents/Resources/
+Sketchwind exporter.sketchplugin/Contents/Resources/_webpack_resources/*
