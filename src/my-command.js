@@ -95,7 +95,7 @@ tailwindConfig = JSON.stringify(theme, null, "\t").replace(/"([^"]+)":/g, '$1:')
 
 function addColor(item, colorValue) {
   var newColor = {}
-  newColor.name = item.category
+  newColor.name = item.item
   newColor.variation = item.variation
   newColor.value = colorValue
 
