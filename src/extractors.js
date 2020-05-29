@@ -13,6 +13,7 @@ export const extractNaming = (element)=>{
   }
 }
 
+// lets see if we ever use this ¯\_(ツ)_/¯
 export const extractStyles = (layer) =>{
   var delve = require('delve')
   //unperformant af, need to find a way: let styles = clone(layer.style)
