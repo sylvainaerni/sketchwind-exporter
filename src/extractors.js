@@ -15,14 +15,13 @@ export const extractNaming = (element)=>{
 
 // lets see if we ever use this ¯\_(ツ)_/¯
 export const extractStyles = (layer) =>{
-  var delve = require('delve')
   //unperformant af, need to find a way: let styles = clone(layer.style)
-  const styles = delve(layer,"styles") | null
-  const color = delve(styles,".fills[0].color") | null
+  const styles = get(layer,"styles") | null
+  const color = get(styles,".fills[0].color") | null
   const shadows = styles.shadows
-  console.log(delve(layer,"style"));
+  console.log(get(layer,"style"));
   // assumption : we do not support multifill atm
-  return layer.styles | null
+  return layer.styles || null
 }
 
 export const extractColorValue = (layer) =>{
