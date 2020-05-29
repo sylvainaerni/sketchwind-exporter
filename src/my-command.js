@@ -1,7 +1,8 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
-import { get } from 'lodash'
 import UI from 'sketch/ui'
+import { extractNaming, extractColorValue, extractDimensions } from './extractors'
+import { convertToREM } from './helpers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -13,6 +14,7 @@ var tailwindConfig = ""
 
 const theme = {}
 theme.colors = {}
+theme.spacing = {}
 theme.fontSize = {}
 
 textStyles.forEach((style) => {
@@ -41,50 +43,27 @@ textStyles.forEach((style) => {
 */
 
 
+symbols.forEach((symbol) => {
+  let item = extractNaming(symbol)
+  if (item.category === 'spacings') {
+    let spacer = extractDimensions(symbol)
+    if (spacer.height) {
+      console.log(item);
+      addSpacing(item, convertToREM(spacer.height))
+    }
+  }
+});
 
 // get infos from each layer styles with a name starting with 'color/' or 'spacings/':
 layerStyles.forEach((layer) => {
-  let item = extractLayerData(layer)
+  let item = extractNaming(layer)
   if (item.category === 'color') {
     let color = extractColorValue(layer)
     if (color) {
       addColor(item, color)
     }
-  } else if (layer.category === 'spacing') {
-    addSpacing(layer, 'mySizeHere')
   }
 });
-
-// split layer name and extract the data needed
-// example: 'colors/gray/900'
-// item[0] is the 'category'              'colors'
-// item[1] is the item itself             'gray'
-// item[2] is the key for variation       '900'
-function extractLayerData(layer){
-  const item = layer.name.replace(/\/\s*$/, '').split('/');
-  return {
-    ...item[0] && {category: item[0]},
-    ...item[1] && {item: item[1]},
-    ...item[2] && {variation: item[2]},
-  }
-}
-
-function extractStyles(layer) {
-  var delve = require('delve')
-  //unperformant af, need to find a way: let styles = clone(layer.style)
-  const styles = delve(layer,"styles") | null
-  const color = delve(styles,".fills[0].color") | null
-  const shadows = styles.shadows
-  console.log(delve(layer,"style"));
-  // assumption : we do not support multifill atm
-  return layer.styles | null
-}
-
-function extractColorValue(layer) {
-  // assumption : we do not support multifill atm
-  return get(layer,"style.fills[0].color") || null
-}
-
 
 // stringify and remove unecessary double quotes
 tailwindConfig = JSON.stringify(theme, null, "\t").replace(/"([^"]+)":/g, '$1:')
@@ -106,9 +85,45 @@ function addColor(item, colorValue) {
   }
 }
 
+/**
+ *
+ * spacing: {
+      px: "1px",
+      "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
+      "6": "1.5rem",
+      "8": "2rem",
+      "10": "2.5rem",
+      "12": "3rem",
+      "16": "4rem",
+      "20": "5rem",
+      "24": "6rem",
+      "32": "8rem",
+      "40": "10rem",
+      "48": "12rem",
+      "56": "14rem",
+      "64": "16rem",
+      "128": "32rem"
+    },
+ * ***/
+
 function addSpacing(item, spacingValue) {
   // TODO some stuff here to export the spacings
-  // console.log('create spacing config here', item, spacingValue)
+  console.log(spacingValue);
+  console.log(item);
+  if(!item.item) return
+  var newSpacing = {}
+  newSpacing.name = item.item
+  newSpacing.value = spacingValue
+
+  // create spacing object if it doesn't exist
+  if (!(newSpacing.name in theme.spacing)) theme.spacing[newSpacing.name] = {}
+  theme.spacing[newSpacing.name] = newSpacing.value
+
 }
 
 export default function () {
