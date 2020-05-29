@@ -91,7 +91,7 @@ export default function () {
   })
 
   const webContents = browserWindow.webContents
-  const configExport = "themed: " + tailwindConfig
+  const configExport = "theme: " + tailwindConfig
 
   // print a message when the page loads
   webContents.on('did-finish-load', () => {
