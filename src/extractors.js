@@ -13,6 +13,17 @@ export const extractNaming = (element)=>{
   }
 }
 
+// example: sm/primary/regular/right
+export const extractFontNaming = (element)=>{
+  const [sizing, hierarchy, weight, alignment] = element.name.replace(/\/\s*$/, '').split('/');
+  return {
+    sizing: sizing,
+    hierarchy: hierarchy,
+    weight: weight,
+    alignment: alignment
+  }
+}
+
 // lets see if we ever use this ¯\_(ツ)_/¯
 export const extractStyles = (layer) =>{
   //unperformant af, need to find a way: let styles = clone(layer.style)
@@ -27,6 +38,18 @@ export const extractStyles = (layer) =>{
 export const extractColorValue = (layer) =>{
   // assumption : we do not support multifill atm
   return get(layer,"style.fills[0].color") || null
+}
+
+export const extractFontProperties = (SharedStyle) =>{
+  const style = SharedStyle.style
+  const { fontSize,textColor,fontWeight,alignment,lineHeight } = style;
+  return {
+    fontSize:fontSize,
+    textColor:textColor,
+    fontWeight:fontWeight,
+    alignment:alignment,
+    lineHeight:lineHeight
+  }
 }
 
 export const extractDimensions = (element) =>{

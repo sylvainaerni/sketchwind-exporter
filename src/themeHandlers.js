@@ -1,4 +1,5 @@
 import { theme } from "./my-command"
+import { convertToREM } from "./helpers"
 
 export const addColor = (item, colorValue) => {
   var newColor = {}
@@ -27,3 +28,17 @@ export const addSpacing = (item, spacingValue) => {
   if (!(newSpacing.name in theme.spacing)) theme.spacing[newSpacing.name] = {}
   theme.spacing[newSpacing.name] = newSpacing.value
 }
+
+export const addFont = (fontStyleName, fontProperties) => {
+  if(!fontStyleName) return
+  var newFont = {}
+  newFont.fontSize = convertToREM(fontProperties.fontSize)
+  // if the lineheight is zero then we dont bother with a conversion
+  newFont.lineHeight = fontProperties.lineHeight ? convertToREM(fontProperties.lineHeight) : null
+  if (!(fontStyleName in theme.fontSize)) theme.fontSize[fontStyleName] = {}
+  // we want either sm: ['14px', '20px'], or sm:'14px',
+  // this depends on the existance of the lineheight
+  theme.fontSize[fontStyleName] = newFont.lineHeight ? [newFont.fontSize,newFont.lineHeight] :  newFont.fontSize
+}
+
+

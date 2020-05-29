@@ -1,9 +1,9 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { extractNaming, extractColorValue, extractDimensions } from './extractors'
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties } from './extractors'
 import { convertToREM } from './helpers'
-import { addColor, addSpacing } from './themeHandlers'
+import { addColor, addSpacing, addFont } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -21,30 +21,26 @@ theme.spacing = {
 }
 theme.fontSize = {}
 
-textStyles.forEach((style) => {
-  if (style.styleType === 'Style') {
-    let fontSize = style.style.fontSize
-    let name = style.name.split("/")[0]
-  }
-});
 
 /*
   fontFamily: {
     sans: ["Inter let", ...defaultTheme.fontFamily.sans],
   },
-  fontSize: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    base: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '4rem',
-  },
+   fontSize: {
+      sm: ['14px', '20px'],
+      base: ['16px', '24px'],
+      lg: ['20px', '28px'],
+      xl: ['24px', '32px'],
+    }
 */
+
+textStyles.forEach((style) => {
+  if (style.styleType === 'Style') {
+    const fontData = extractFontNaming(style);
+    const fontStyles = extractFontProperties(style)
+    addFont(fontData.sizing,fontStyles)
+  }
+});
 
 
 symbols.forEach((symbol) => {
@@ -57,7 +53,6 @@ symbols.forEach((symbol) => {
   }
 });
 
-// get infos from each layer styles with a name starting with 'color/' or 'spacings/':
 layerStyles.forEach((layer) => {
   let item = extractNaming(layer)
   if (item.category === 'color') {
