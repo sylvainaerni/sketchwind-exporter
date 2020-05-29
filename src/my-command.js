@@ -7,11 +7,11 @@ import { addColor, addSpacing } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
-var document = require('sketch/dom').getSelectedDocument()
-var symbols = document.getSymbols()
-var textStyles = document.sharedTextStyles
-var layerStyles = document.sharedLayerStyles
-var tailwindConfig = ""
+let document = require('sketch/dom').getSelectedDocument()
+let symbols = document.getSymbols()
+let textStyles = document.sharedTextStyles
+let layerStyles = document.sharedLayerStyles
+let tailwindConfig = ""
 
 export const theme = {}
 theme.colors = {}
@@ -23,14 +23,14 @@ theme.fontSize = {}
 
 textStyles.forEach((style) => {
   if (style.styleType === 'Style') {
-    var fontSize = style.style.fontSize
-    var name = style.name.split("/")[0]
+    let fontSize = style.style.fontSize
+    let name = style.name.split("/")[0]
   }
 });
 
 /*
   fontFamily: {
-    sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+    sans: ["Inter let", ...defaultTheme.fontFamily.sans],
   },
   fontSize: {
     xs: '0.75rem',
