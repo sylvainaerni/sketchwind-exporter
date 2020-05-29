@@ -1,5 +1,6 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
+import { get } from 'lodash'
 import UI from 'sketch/ui'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
@@ -45,7 +46,7 @@ textStyles.forEach((style) => {
 layerStyles.forEach((layer) => {
   let item = extractLayerData(layer)
   if (item.category === 'color') {
-    let color = extractColorStyles(layer)
+    let color = extractColorValue(layer)
     if (color) {
       addColor(item, color)
     }
@@ -79,13 +80,9 @@ function extractStyles(layer) {
   return layer.styles | null
 }
 
-function extractColorStyles(layer) {
+function extractColorValue(layer) {
   // assumption : we do not support multifill atm
-  // todo: delve this!
-  if(layer.style && layer.style.fills && layer.style.fills[0]) {
-    return layer.style.fills[0].color
-  }
-  return null
+  return get(layer,"style.fills[0].color") || null
 }
 
 
