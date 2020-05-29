@@ -3,6 +3,7 @@ import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 import { extractNaming, extractColorValue, extractDimensions } from './extractors'
 import { convertToREM } from './helpers'
+import { addColor, addSpacing } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -12,9 +13,12 @@ var textStyles = document.sharedTextStyles
 var layerStyles = document.sharedLayerStyles
 var tailwindConfig = ""
 
-const theme = {}
+export const theme = {}
 theme.colors = {}
-theme.spacing = {}
+theme.spacing = {
+  px: "1px",
+  "0": "0"
+}
 theme.fontSize = {}
 
 textStyles.forEach((style) => {
@@ -48,7 +52,6 @@ symbols.forEach((symbol) => {
   if (item.category === 'spacings') {
     let spacer = extractDimensions(symbol)
     if (spacer.height) {
-      console.log(item);
       addSpacing(item, convertToREM(spacer.height))
     }
   }
@@ -65,66 +68,10 @@ layerStyles.forEach((layer) => {
   }
 });
 
+
+//TODO: refactori this down here sometimes, so its somewhere more fitting
 // stringify and remove unecessary double quotes
 tailwindConfig = JSON.stringify(theme, null, "\t").replace(/"([^"]+)":/g, '$1:')
-
-
-function addColor(item, colorValue) {
-  var newColor = {}
-  newColor.name = item.item
-  newColor.variation = item.variation
-  newColor.value = colorValue
-
-  // create color object if color doesn't exist
-  if (!(newColor.name in theme.colors)) theme.colors[newColor.name] = {}
-  // create color variation if it exists
-  if (newColor.variation) {
-    theme.colors[newColor.name][newColor.variation] = newColor.value
-  } else {
-    theme.colors[newColor.name] = newColor.value
-  }
-}
-
-/**
- *
- * spacing: {
-      px: "1px",
-      "0": "0",
-      "1": "0.25rem",
-      "2": "0.5rem",
-      "3": "0.75rem",
-      "4": "1rem",
-      "5": "1.25rem",
-      "6": "1.5rem",
-      "8": "2rem",
-      "10": "2.5rem",
-      "12": "3rem",
-      "16": "4rem",
-      "20": "5rem",
-      "24": "6rem",
-      "32": "8rem",
-      "40": "10rem",
-      "48": "12rem",
-      "56": "14rem",
-      "64": "16rem",
-      "128": "32rem"
-    },
- * ***/
-
-function addSpacing(item, spacingValue) {
-  // TODO some stuff here to export the spacings
-  console.log(spacingValue);
-  console.log(item);
-  if(!item.item) return
-  var newSpacing = {}
-  newSpacing.name = item.item
-  newSpacing.value = spacingValue
-
-  // create spacing object if it doesn't exist
-  if (!(newSpacing.name in theme.spacing)) theme.spacing[newSpacing.name] = {}
-  theme.spacing[newSpacing.name] = newSpacing.value
-
-}
 
 export default function () {
   const options = {
