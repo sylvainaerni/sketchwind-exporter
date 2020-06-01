@@ -45,7 +45,7 @@ textStyles.forEach((style) => {
 
 symbols.forEach((symbol) => {
   let item = extractNaming(symbol)
-  if (item.category === 'spacings') {
+  if (item.category === 'spacing') {
     let spacer = extractDimensions(symbol)
     if (spacer.height) {
       addSpacing(item, convertToREM(spacer.height))
