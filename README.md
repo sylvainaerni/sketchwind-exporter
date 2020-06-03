@@ -1,5 +1,5 @@
-# tailwind-config-exporter
-Sketch plugin for exporting configuration file to Tailwind CSS framework
+# Sketchwind-exporter
+Sketchwind Exporter is a Sketch plugin for exporting configuration files to the Tailwind CSS framework. This plugin is tightly related to the [Sketchwind design system](https://github.com/sylvainaerni/sketchwind), a Sketch template based on Tailwind philosophy.
 
 
 ## Installation
