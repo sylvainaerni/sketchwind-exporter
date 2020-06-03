@@ -52,7 +52,6 @@ spread: -2
 export const extractShadows = (layer) =>{
   // sketch shadows are very abstract and fragmented
   let sketchShadows = get(layer,"style.shadows")
-  console.log('HELLO sketchShadows', sketchShadows)
   let sketchInnerShadows = get(layer,"style.innerShadows")
   // shadows can be layered
   let shadows = sketchShadows.map(_ => {
