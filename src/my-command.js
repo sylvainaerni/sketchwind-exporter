@@ -1,7 +1,7 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth } from './extractors'
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows } from './extractors'
 import { convertPxToREM, convertIntToPX } from './helpers'
 import { addColor, addSpacing, addFont, addBorderWidth } from './themeHandlers'
 
@@ -60,7 +60,10 @@ symbols.forEach((symbol) => {
 layerStyles.forEach((layer) => {
   let item = extractNaming(layer)
   if (item.category === 'strokeWidth') {}
-  if (item.category === 'strokeWidth') {}
+  if (item.category === 'boxShadow') {
+    let shadows = extractShadows(layer)
+    console.log(shadows)
+  }
   if (item.category === 'borderWidth') {
     let borderWidth = extractBorderWidth(layer)
     if(borderWidth) addBorderWidth(borderWidth, convertIntToPX(borderWidth))
