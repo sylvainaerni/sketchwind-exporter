@@ -30,7 +30,6 @@ export const extractStyles = (layer) =>{
   const styles = get(layer,"styles") | null
   const color = get(styles,".fills[0].color") | null
   const shadows = styles.shadows
-  console.log(get(layer,"style"));
   // assumption : we do not support multifill atm
   return layer.styles || null
 }
@@ -38,6 +37,11 @@ export const extractStyles = (layer) =>{
 export const extractColorValue = (layer) =>{
   // assumption : we do not support multifill atm
   return get(layer,"style.fills[0].color") || null
+}
+
+export const extractBorderWidth = (layer) =>{
+  // assumption : we do not support multifill atm
+  return get(layer,"style.borders[0].thickness") || null
 }
 
 export const extractFontProperties = (SharedStyle) =>{

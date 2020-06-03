@@ -1,9 +1,9 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties } from './extractors'
-import { convertToREM } from './helpers'
-import { addColor, addSpacing, addFont } from './themeHandlers'
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth } from './extractors'
+import { convertPxToREM, convertIntToPX } from './helpers'
+import { addColor, addSpacing, addFont, addBorderWidth } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -47,18 +47,22 @@ symbols.forEach((symbol) => {
   if (item.category === 'spacing') {
     let spacer = extractDimensions(symbol)
     if (spacer.height) {
-      addSpacing(item, convertToREM(spacer.height))
+      addSpacing(item, convertPxToREM(spacer.height))
     }
   }
 });
 
 layerStyles.forEach((layer) => {
   let item = extractNaming(layer)
+  if (item.category === 'strokeWidth') {}
+  if (item.category === 'strokeWidth') {}
+  if (item.category === 'borderWidth') {
+    let borderWidth = extractBorderWidth(layer)
+    if(borderWidth) addBorderWidth(borderWidth, convertIntToPX(borderWidth))
+  }
   if (item.category === 'color') {
     let color = extractColorValue(layer)
-    if (color) {
-      addColor(item, color)
-    }
+    if (color) addColor(item, color)
   }
 });
 

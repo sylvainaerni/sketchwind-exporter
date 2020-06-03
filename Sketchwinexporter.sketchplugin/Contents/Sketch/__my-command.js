@@ -2592,7 +2592,7 @@ textStyles.forEach(function (style) {
   if (style.styleType === 'Style') {
     var fontSize = style.style.fontSize;
     var name = style.name.split("/")[0]; //console.log('fontSize', fontSize, name)
-    // console.log('style', style)
+
   }
 });
 /*
