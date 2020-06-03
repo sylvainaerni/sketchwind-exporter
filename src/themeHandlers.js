@@ -38,6 +38,8 @@ export const addFont = (fontStyleName, fontProperties) => {
   if (!(fontStyleName in theme.fontSize)) theme.fontSize[fontStyleName] = {}
   // we want either sm: ['14px', '20px'], or sm:'14px',
   // this depends on the existance of the lineheight
+  // ternary, if the new font has a lineheight generate the array object,
+  // otherwise just add the font as string (god i wish this was typed)
   theme.fontSize[fontStyleName] = newFont.lineHeight ? [newFont.fontSize,newFont.lineHeight] :  newFont.fontSize
 }
 

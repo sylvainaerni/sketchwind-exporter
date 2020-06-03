@@ -42,7 +42,6 @@ textStyles.forEach((style) => {
   }
 });
 
-
 symbols.forEach((symbol) => {
   let item = extractNaming(symbol)
   if (item.category === 'spacing') {
