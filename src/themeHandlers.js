@@ -32,8 +32,9 @@ export const addShadow = (name, shadowValue) => {
   if(!name) return
   // create boxShadow object if it doesn't exist
   if (!theme.boxShadow) theme.boxShadow = {}
-  if (!(name in theme.boxShadow)) theme.boxShadow[name] = {}
+  if (!(name in theme.boxShadow)) theme.boxShadow[name]
   theme.boxShadow[name] = shadowValue
+  theme.boxShadow.none = "none"
 }
 
 
