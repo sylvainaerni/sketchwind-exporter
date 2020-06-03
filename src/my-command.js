@@ -47,7 +47,12 @@ symbols.forEach((symbol) => {
   if (item.category === 'spacing') {
     let spacer = extractDimensions(symbol)
     if (spacer.height) {
-      addSpacing(item, convertPxToREM(spacer.height))
+      // the size 1 is in tailwidn 1 pixel, not 1/16 rem
+      if (spacer.height > 1) {
+        addSpacing(item, convertPxToREM(spacer.height))
+      } else {
+        addSpacing(item, convertIntToPX(spacer.height))
+      }
     }
   }
 });
