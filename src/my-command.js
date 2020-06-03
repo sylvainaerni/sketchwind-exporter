@@ -21,19 +21,6 @@ theme.spacing = {
 }
 theme.fontSize = {}
 
-
-/*
-  fontFamily: {
-    sans: ["Inter let", ...defaultTheme.fontFamily.sans],
-  },
-   fontSize: {
-      sm: ['14px', '20px'],
-      base: ['16px', '24px'],
-      lg: ['20px', '28px'],
-      xl: ['24px', '32px'],
-    }
-*/
-
 textStyles.forEach((style) => {
   if (style.styleType === 'Style') {
     const fontData = extractFontNaming(style);
@@ -59,7 +46,9 @@ symbols.forEach((symbol) => {
 
 layerStyles.forEach((layer) => {
   let item = extractNaming(layer)
-  if (item.category === 'strokeWidth') {}
+  if (item.category === 'strokeWidth') {
+    console.log(layer);
+  }
   if (item.category === 'boxShadow') {
     let shadowDefinitions = extractShadows(layer)
     addShadow(item.item,shadowDefinitions.shadows)
