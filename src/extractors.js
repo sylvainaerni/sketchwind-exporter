@@ -52,16 +52,17 @@ spread: -2
 export const extractShadows = (layer) =>{
   // sketch shadows are very abstract and fragmented
   let sketchShadows = get(layer,"style.shadows")
+  console.log('HELLO sketchShadows', sketchShadows)
   let sketchInnerShadows = get(layer,"style.innerShadows")
   // shadows can be layered
   let shadows = sketchShadows.map(_ => {
-    /* offset-x | offset-y | blur-radius | color */
-    return `${convertIntToPX(_.x)} ${convertIntToPX(_.y)} ${convertIntToPX(_.blur)} ${_.color}`
+    /* offset-x | offset-y | blur-radius | spread | color */
+    return `${convertIntToPX(_.x)} ${convertIntToPX(_.y)} ${convertIntToPX(_.blur)} ${convertIntToPX(_.spread)} ${_.color}`
   }).join(", ")
 
   let innerShadows = sketchInnerShadows.map(_ => {
     /* offset-x | offset-y | blur-radius | color */
-    return `${convertIntToPX(_.x)} ${convertIntToPX(_.y)} ${convertIntToPX(_.blur)} ${_.color}`
+    return `${convertIntToPX(_.x)} ${convertIntToPX(_.y)} ${convertIntToPX(_.blur)} ${convertIntToPX(_.spread)} ${_.color}`
   }).join(", ")
 
   return {
