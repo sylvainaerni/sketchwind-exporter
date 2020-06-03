@@ -27,6 +27,17 @@ export const addSpacing = (item, spacingValue) => {
   if (!(name in theme.spacing)) theme.spacing[name] = {}
   theme.spacing[name] = value
 }
+
+export const addShadow = (name, shadowValue) => {
+  if(!name) return
+  // create boxShadow object if it doesn't exist
+  if (!theme.boxShadow) theme.boxShadow = {}
+  if (!(name in theme.boxShadow)) theme.boxShadow[name] = {}
+  theme.boxShadow[name] = shadowValue
+}
+
+
+
 // todo: erase objects in other functions too, this is easier to read
 // also todo: add the initialization of the modulat object, like border width in the function which adds them!!!!!!
 export const addBorderWidth = (name, width) => {
