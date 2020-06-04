@@ -6,6 +6,8 @@ export const addColor = (item, colorValue) => {
   const variation = item.variation
   const value = colorValue
 
+  if(name.startsWith("_")) name.slice(1)
+
   if (!theme.colors) theme.colors = {}
   // create color object if color doesn't exist
   if (!(name in theme.colors)) theme.colors[name] = {}
