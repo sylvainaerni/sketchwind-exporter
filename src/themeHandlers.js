@@ -1,4 +1,4 @@
-import { theme } from "./my-command"
+import { theme } from "./theme"
 import { convertPxToREM } from "./helpers"
 
 export const addColor = (item, colorValue) => {
@@ -7,8 +7,6 @@ export const addColor = (item, colorValue) => {
   const value = colorValue
 
   if(name.startsWith("_"))  name = name.slice(1)
-
-  if (!theme.colors) theme.colors = {}
   // create color object if color doesn't exist
   if (!(name in theme.colors)) theme.colors[name] = {}
   // create color variation if it exists
@@ -24,7 +22,6 @@ export const addSpacing = (item, spacingValue) => {
   if(!item.item) return
   const name = item.item
   const value = spacingValue
-
   // create spacing object if it doesn't exist
   if (!(name in theme.spacing)) theme.spacing[name] = {}
   theme.spacing[name] = value
@@ -33,7 +30,6 @@ export const addSpacing = (item, spacingValue) => {
 export const addShadow = (name, shadowValue) => {
   if(!name) return
   // create boxShadow object if it doesn't exist
-  if (!theme.boxShadow) theme.boxShadow = {}
   if (!(name in theme.boxShadow)) theme.boxShadow[name]
   theme.boxShadow[name] = shadowValue
   theme.boxShadow.none = "none"
@@ -45,8 +41,6 @@ export const addShadow = (name, shadowValue) => {
 // also todo: add the initialization of the modulat object, like border width in the function which adds them!!!!!!
 export const addBorderWidth = (name, width) => {
   if(!name || !width) return
-  // create borderWidth object if it doesn't exist
-  if (!theme.borderWidth) theme.borderWidth = {}
   if (!(name in theme.borderWidth)) theme.borderWidth[name] = {}
   theme.borderWidth[name] = width
 }

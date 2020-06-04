@@ -1,6 +1,7 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
+import { theme } from "./theme"
 import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows } from './extractors'
 import { convertPxToREM, convertIntToPX } from './helpers'
 import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke } from './themeHandlers'
@@ -13,13 +14,6 @@ let textStyles = document.sharedTextStyles
 let layerStyles = document.sharedLayerStyles
 let tailwindConfig = ""
 
-export const theme = {}
-theme.colors = {}
-theme.spacing = {
-  px: "1px",
-  "0": "0"
-}
-theme.fontSize = {}
 
 textStyles.forEach((style) => {
   if (style.styleType === 'Style') {
