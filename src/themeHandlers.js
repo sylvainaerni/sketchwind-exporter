@@ -49,6 +49,14 @@ export const addBorderWidth = (name, width) => {
   theme.borderWidth[name] = width
 }
 
+export const addStroke = (name, width) => {
+  if(!name || !width) return
+  // create strokeWidth object if it doesn't exist
+  if (!theme.strokeWidth) theme.strokeWidth = {0:0}
+  if (!(name in theme.strokeWidth)) theme.strokeWidth[name] = {}
+  theme.strokeWidth[name] = width
+}
+
 export const addFont = (fontStyleName, fontProperties) => {
   if(!fontStyleName) return
   const fontSize = convertPxToREM(fontProperties.fontSize)

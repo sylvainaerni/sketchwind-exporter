@@ -3,7 +3,7 @@ import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows } from './extractors'
 import { convertPxToREM, convertIntToPX } from './helpers'
-import { addColor, addSpacing, addFont, addBorderWidth, addShadow } from './themeHandlers'
+import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -47,7 +47,8 @@ symbols.forEach((symbol) => {
 layerStyles.forEach((layer) => {
   let item = extractNaming(layer)
   if (item.category === 'strokeWidth') {
-    console.log(layer);
+    let borderWidth = extractBorderWidth(layer)
+    if(borderWidth) addStroke(borderWidth, convertIntToPX(borderWidth))
   }
   if (item.category === 'boxShadow') {
     let shadowDefinitions = extractShadows(layer)
