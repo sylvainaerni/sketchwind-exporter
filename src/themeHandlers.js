@@ -2,11 +2,11 @@ import { theme } from "./my-command"
 import { convertPxToREM } from "./helpers"
 
 export const addColor = (item, colorValue) => {
-  const name = item.item
+  let name = item.item
   const variation = item.variation
   const value = colorValue
 
-  if(name.startsWith("_")) name.slice(1)
+  if(name.startsWith("_"))  name = name.slice(1)
 
   if (!theme.colors) theme.colors = {}
   // create color object if color doesn't exist
