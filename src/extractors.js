@@ -25,6 +25,7 @@ export const extractFontNaming = (element)=>{
   }
 }
 
+
 // lets see if we ever use this ¯\_(ツ)_/¯
 export const extractStyles = (layer) =>{
   //unperformant af, need to find a way: let styles = clone(layer.style)
