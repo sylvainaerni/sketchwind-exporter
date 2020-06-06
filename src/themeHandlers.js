@@ -68,3 +68,13 @@ export const addFont = (fontStyleName, fontProperties) => {
 }
 
 
+export const addScreen = (item, width) => {
+  if (!item.item) return
+  const name = item.item
+  const value = width
+  // create spacing object if it doesn't exist
+  if (!(name in theme.screens)) theme.screens[name] = {}
+  theme.screens[name] = value
+}
+
+

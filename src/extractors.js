@@ -88,7 +88,12 @@ export const extractFontProperties = (SharedStyle) =>{
   }
 }
 
-export const extractDimensions = (element) =>{
+export const extractDimensions = (element) => {
   // assumption : we do not support multifill atm
-  return get(element,"frame") || null
+  return get(element, "frame") || null
 }
+
+export const extractArtboardWidth = (layer) => {
+  return get(layer, "frame.width") || null
+}
+

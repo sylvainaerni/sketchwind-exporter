@@ -2,9 +2,9 @@ import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 import { theme } from "./theme"
-import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows } from './extractors'
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows, extractArtboardWidth } from './extractors'
 import { convertPxToREM, convertIntToPX } from './helpers'
-import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke } from './themeHandlers'
+import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
 
@@ -28,7 +28,7 @@ symbols.forEach((symbol) => {
   if (item.category === 'spacing') {
     let spacer = extractDimensions(symbol)
     if (spacer.height) {
-      // the size 1 is in tailwidn 1 pixel, not 1/16 rem
+      // the size 1 is in tailwind 1 pixel, not 1/16 rem
       if (spacer.height > 1) {
         addSpacing(item, convertPxToREM(spacer.height))
       } else {
@@ -56,6 +56,18 @@ layerStyles.forEach((layer) => {
     let color = extractColorValue(layer)
     if (color) addColor(item, color)
   }
+});
+
+document.pages.forEach((page) => {
+  page.layers.forEach((layer) => {
+    if (layer.type == 'Artboard') {
+      let item = extractNaming(layer)
+      if (item.category === 'screen') {
+        let artboardWidth = extractArtboardWidth(layer)
+        if (artboardWidth) addScreen(item, convertIntToPX(artboardWidth))
+      }
+    }
+  })
 });
 
 

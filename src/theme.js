@@ -8,6 +8,8 @@ theme.spacing = {
   "0": "0"
 }
 
+theme.screens = {}
+
 theme.fontSize = {}
 theme.boxShadow = {
   none:"none"
