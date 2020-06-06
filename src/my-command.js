@@ -60,7 +60,7 @@ layerStyles.forEach((layer) => {
 
 document.pages.forEach((page) => {
   page.layers.forEach((layer) => {
-    if (layer.type == 'Artboard') {
+    if (layer.type === 'Artboard') {
       let item = extractNaming(layer)
       if (item.category === 'screen') {
         let artboardWidth = extractArtboardWidth(layer)
