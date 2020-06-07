@@ -79,7 +79,7 @@ export default function () {
   const options = {
     identifier: webviewIdentifier,
     width: 600,
-    height: 450,
+    height: 850,
     show: false,
     titleBarStyle: 'hidden'
   }
