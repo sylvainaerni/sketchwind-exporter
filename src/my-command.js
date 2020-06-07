@@ -3,7 +3,7 @@ import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 import { theme } from "./theme"
 import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows, extractArtboardWidth } from './extractors'
-import { convertPxToREM, convertIntToPX } from './helpers'
+import { convertPxToREM, convertIntToPX, convertColor } from './helpers'
 import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen } from './themeHandlers'
 
 const webviewIdentifier = 'tailwind-config-exporter.webview'
@@ -54,7 +54,7 @@ layerStyles.forEach((layer) => {
   }
   if (item.category === 'color') {
     let color = extractColorValue(layer)
-    if (color) addColor(item, color)
+    if (color) addColor(item, convertColor(color))
   }
 });
 

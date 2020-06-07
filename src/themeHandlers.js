@@ -1,5 +1,5 @@
 import { theme } from "./theme"
-import { convertPxToREM } from "./helpers"
+import { convertPxToREM, convertToRgba } from "./helpers"
 
 export const addColor = (item, colorValue) => {
   let name = item.item
@@ -32,7 +32,12 @@ export const addShadow = (name, shadowValue) => {
   if(!name) return
   // create boxShadow object if it doesn't exist
   if (!(name in theme.boxShadow)) theme.boxShadow[name]
-  theme.boxShadow[name] = shadowValue
+
+  // convert rrggbbaa colors to rgba
+  let regex = /#[0-9a-f]{8}/gi
+  let convertedShadowValue = shadowValue.replace(regex, convertToRgba)
+  theme.boxShadow[name] = convertedShadowValue
+
   theme.boxShadow.none = "none"
 }
 
