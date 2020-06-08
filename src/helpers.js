@@ -26,7 +26,15 @@ export const convertToRgba = (color) => {
   let green = parseInt(value.substring(2, 4), 16)
   let blue = parseInt(value.substring(4, 6), 16)
   let alpha = Math.round((parseInt(value.substring(6, 8), 16) / 255) * 100) / 100;
-  return "rgba(" + red + "," + green + "," + blue + "," + alpha + ")"
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`
+}
+
+export const wrapDigitKey = (key) => {
+  if (typeof key !== 'string') return key
+  // wrap object keys with simple quotes
+  // if they start with a digit followed by a char
+  function wrap(value) { return `'${value}'`}
+  return key.replace(/([0-9]{1,9}[a-z].*)/gmi, wrap)
 }
 
 function roundToTwo(num) {
