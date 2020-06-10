@@ -28,10 +28,11 @@ export const addSpacing = (item, spacingValue) => {
 
 export const addBorderRadius = (item, borderRadius) => {
   if (!item.variation) return;
-  const name = item.variation.split(":")[1];
+  const name = item.variation.split(":")[1].trim();
   const value = borderRadius;
-  if(!value) return
-  // create borderRadius object if it doesn't exist
+  if (!value || name === 'full') return
+
+    // create borderRadius object if it doesn't exist
   if (!(name in theme.borderRadius)) theme.borderRadius[wrapDigitKey(name)] = {};
   theme.borderRadius[wrapDigitKey(name)] = value;
 };
@@ -45,9 +46,10 @@ export const addShadow = (name, shadowValue) => {
   // convert rrggbbaa colors to rgba
   let regex = /#[0-9a-f]{8}/gi;
   let convertedShadowValue = shadowValue.replace(regex, convertToRgba);
+  if (name.startsWith('inner') || name.startsWith('inset')) {
+    convertedShadowValue = `inset ${convertedShadowValue}`
+  }
   theme.boxShadow[wrapDigitKey(name)] = convertedShadowValue;
-
-  theme.boxShadow.none = 'none';
 };
 
 // todo: erase objects in other functions too, this is easier to read
