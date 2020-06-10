@@ -40,6 +40,17 @@ export const extractColorValue = (layer) => {
   return get(layer, 'style.fills[0].color') || null;
 };
 
+export const extractBorderRadius = (symbol) => {
+  const points = get(symbol, 'layers[0].points');
+  if (!points || !points.length) return;
+  const borderRadius = points
+    .map((point) => {
+      return point.cornerRadius + 'px';
+    })
+    .join(' ');
+  return borderRadius || null;
+};
+
 /***
 y: 4
 color: #0000000d

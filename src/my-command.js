@@ -2,9 +2,9 @@ import BrowserWindow from 'sketch-module-web-view';
 import { getWebview } from 'sketch-module-web-view/remote';
 import UI from 'sketch/ui';
 import { theme } from './theme';
-import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractShadows, extractArtboardWidth } from './extractors';
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth,extractBorderRadius, extractShadows, extractArtboardWidth } from './extractors';
 import { convertPxToREM, convertIntToPX, convertColor } from './helpers';
-import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen } from './themeHandlers';
+import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius } from './themeHandlers';
 
 const webviewIdentifier = 'tailwind-config-exporter.webview';
 
@@ -24,6 +24,12 @@ textStyles.forEach((style) => {
 
 symbols.forEach((symbol) => {
   let item = extractNaming(symbol);
+
+  if (item.variation && item.variation.includes("radius")) {
+    const borderRadius = extractBorderRadius(symbol)
+    addBorderRadius(item,borderRadius)
+  }
+
   if (item.category === 'spacing') {
     let spacer = extractDimensions(symbol);
     if (spacer.height) {

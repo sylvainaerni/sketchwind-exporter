@@ -1,5 +1,5 @@
 import { theme } from './theme';
-import { convertPxToREM, convertToRgba, wrapDigitKey } from './helpers';
+import { convertPxToREM, convertToRgba, wrapDigitKey, convertIntToPX } from './helpers';
 
 export const addColor = (item, colorValue) => {
   let name = item.item;
@@ -24,6 +24,16 @@ export const addSpacing = (item, spacingValue) => {
   // create spacing object if it doesn't exist
   if (!(name in theme.spacing)) theme.spacing[wrapDigitKey(name)] = {};
   theme.spacing[wrapDigitKey(name)] = value;
+};
+
+export const addBorderRadius = (item, borderRadius) => {
+  if (!item.variation) return;
+  const name = item.variation.split(":")[1];
+  const value = borderRadius;
+  if(!value) return
+  // create borderRadius object if it doesn't exist
+  if (!(name in theme.borderRadius)) theme.borderRadius[wrapDigitKey(name)] = {};
+  theme.borderRadius[wrapDigitKey(name)] = value;
 };
 
 export const addShadow = (name, shadowValue) => {
