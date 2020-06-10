@@ -1,6 +1,6 @@
 export const theme = {};
 theme.colors = {
-  transparent: 'transparent',
+  transparent: 'transparent'
 };
 
 theme.spacing = {
@@ -20,7 +20,7 @@ theme.borderWidth = {
   0: 0,
 };
 
-(theme.opacity = {
+theme.opacity = {
   '0': '0',
   '10': '0.1',
   '20': '0.2',
@@ -32,5 +32,4 @@ theme.borderWidth = {
   '80': '0.8',
   '90': '0.9',
   '100': '1',
-}),
-  (theme.backgroundColor = theme.colors);
+}
