@@ -36,6 +36,5 @@ theme.opacity = {
 
 theme.borderRadius = {
   full:"100%",
-  half:"50%",
-  none:"none"
+  half:"50%"
 }
