@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="23f96e678528360ffd6cc65677672df6.css";">
+</head>
+<body>
+  <div data-app-region="drag" class="window-drag-handler" ></div>
+  <div class="content">
+    <svg class="logo" viewBox="0 0 57 28">
+      <style type="text/css">
+        .st0{fill:#16BDCA;}
+        .st1{fill:#FDB300;}
+        .st2{fill:#EA6C00;}
+        .st3{fill:#FDAD00;}
+        .st4{fill:#FDD231;}
+        .st5{fill:#FEEEB7;}
+      </style>
+      <path class="st0" d="M15.8,3.6C11.7,3.6,9,5.7,8,9.8c1.6-2.1,3.4-2.9,5.5-2.3c1.2,0.3,2,1.2,3,2.1c1.6,1.6,3.3,3.4,7.2,3.4
+        c4.1,0,6.8-2.1,7.8-6.2c-1.6,2.1-3.4,2.9-5.5,2.3c-1.2-0.3-2-1.2-3-2.1C21.4,5.4,19.7,3.6,15.8,3.6z M8,13c-4.1,0-6.8,2.1-7.8,6.2
+        c1.6-2.1,3.4-2.9,5.5-2.3c1.2,0.3,2,1.2,3,2.1c1.6,1.6,3.3,3.4,7.2,3.4c4.1,0,6.8-2.1,7.8-6.2c-1.6,2.1-3.4,2.9-5.5,2.3
+        c-1.2-0.3-2-1.2-3-2.1C13.6,14.8,11.9,13,8,13z"/>
+      <g>
+        <g>
+          <polygon class="st1" points="31.6,1.7 39.9,0.8 48.2,1.7 54.6,10.3 39.9,27.4 25.3,10.3"/>
+          <g transform="translate(0.000000, 126.881084)">
+            <polygon class="st2" points="31.2,-116.6 39.9,-99.5 25.3,-116.6"/>
+            <polygon class="st2" points="48.6,-116.6 39.9,-99.5 54.6,-116.6"/>
+            <polygon class="st3" points="31.2,-116.6 48.6,-116.6 39.9,-99.5"/>
+          </g>
+          <g>
+            <polygon class="st4" points="39.9,0.8 31.6,1.7 31.2,10.3"/>
+            <polygon class="st4" points="39.9,0.8 48.2,1.7 48.6,10.3"/>
+            <polygon class="st3" points="54.6,10.3 48.2,1.7 48.6,10.3"/>
+            <polygon class="st3" points="25.3,10.3 31.6,1.7 31.2,10.3"/>
+            <polygon class="st5" points="39.9,0.8 31.2,10.3 48.6,10.3"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <h1>Sketchwind</h1>
+    <div class="hint">Copy paste this in your tailwind.config.js file</div>
+    <textarea id="textarea-output" class="textarea-output"></textarea>
+    <div class="flex">
+      <button id="button" class="button button--primary">
+        Copy to clipboard
+      </button>
+      <div id="validation-message" class="button validation">
+        Copied to clipboard!
+      </div>
+    </div>
+    <div id="answer"></div>
+  </div>
+  <!-- notice the "../resources_" here. It's because webview.js will be compiled in a different folder with the prefix. -->
+  <script src="../resources_webview.js"></script>
+</body>
+</html>
