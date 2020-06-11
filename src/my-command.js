@@ -18,9 +18,6 @@ textStyles.forEach((style) => {
   if (style.styleType === 'Style') {
     const fontData = extractFontNaming(style);
     const fontStyles = extractFontProperties(style);
-    console.log('fontData', fontData);
-    console.log('fontStyles', fontStyles);
-    console.log('-----------')
     addFontSize(fontData.sizing, fontStyles);
     addFontFamily(fontData.hierarchy, fontStyles.fontFamily)
   }
