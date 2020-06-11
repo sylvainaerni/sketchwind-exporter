@@ -67,7 +67,7 @@ export const addStroke = (name, width) => {
   theme.strokeWidth[wrapDigitKey(name)] = width;
 };
 
-export const addFont = (fontStyleName, fontProperties) => {
+export const addFontSize = (fontStyleName, fontProperties) => {
   if (!fontStyleName) return;
   const fontSize = convertPxToREM(fontProperties.fontSize);
   // if the lineheight is zero then we dont bother with a conversion
@@ -78,6 +78,13 @@ export const addFont = (fontStyleName, fontProperties) => {
   // ternary, if the new font has a lineheight generate the array object,
   // otherwise just add the font as string (god i wish this was typed)
   theme.fontSize[wrapDigitKey(fontStyleName)] = lineHeight ? [fontSize, lineHeight] : fontSize;
+};
+
+export const addFontFamily = (fontCustomName, fontFamily) => {
+  if (!fontCustomName) return;
+
+  if (!(fontCustomName in theme.fontFamily)) theme.fontFamily[wrapDigitKey(fontCustomName)] = {};
+  theme.fontFamily[wrapDigitKey(fontCustomName)] = [fontFamily];
 };
 
 export const addScreen = (item, width) => {

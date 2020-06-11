@@ -4,7 +4,7 @@ import UI from 'sketch/ui';
 import { theme } from './theme';
 import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractBorderRadius, extractShadows, extractArtboardWidth, extractOpacityValue } from './extractors';
 import { convertPxToREM, convertIntToPX, convertColor, roundToTwo } from './helpers';
-import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius, addOpacity } from './themeHandlers';
+import { addColor, addSpacing, addFontSize, addFontFamily, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius, addOpacity } from './themeHandlers';
 
 const webviewIdentifier = 'tailwind-config-exporter.webview';
 
@@ -18,7 +18,11 @@ textStyles.forEach((style) => {
   if (style.styleType === 'Style') {
     const fontData = extractFontNaming(style);
     const fontStyles = extractFontProperties(style);
-    addFont(fontData.sizing, fontStyles);
+    console.log('fontData', fontData);
+    console.log('fontStyles', fontStyles);
+    console.log('-----------')
+    addFontSize(fontData.sizing, fontStyles);
+    addFontFamily(fontData.hierarchy, fontStyles.fontFamily)
   }
 });
 

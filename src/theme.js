@@ -11,6 +11,7 @@ theme.spacing = {
 theme.screens = {};
 
 theme.fontSize = {};
+theme.fontFamily = {};
 theme.boxShadow = {
   none: "none",
   inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",

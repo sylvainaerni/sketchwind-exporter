@@ -25,6 +25,19 @@ export const extractFontNaming = (element) => {
   };
 };
 
+export const extractFontProperties = (SharedStyle) => {
+  const style = SharedStyle.style;
+  const { fontFamily, fontSize, textColor, fontWeight, alignment, lineHeight } = style;
+  return {
+    fontFamily: fontFamily,
+    fontSize: fontSize,
+    textColor: textColor,
+    fontWeight: fontWeight,
+    alignment: alignment,
+    lineHeight: lineHeight,
+  };
+};
+
 // lets see if we ever use this ¯\_(ツ)_/¯
 export const extractStyles = (layer) => {
   //unperformant af, need to find a way: let styles = clone(layer.style)
@@ -88,18 +101,6 @@ export const extractShadows = (layer) => {
 export const extractBorderWidth = (layer) => {
   // assumption : we do not support multifill atm
   return get(layer, 'style.borders[0].thickness') || null;
-};
-
-export const extractFontProperties = (SharedStyle) => {
-  const style = SharedStyle.style;
-  const { fontSize, textColor, fontWeight, alignment, lineHeight } = style;
-  return {
-    fontSize: fontSize,
-    textColor: textColor,
-    fontWeight: fontWeight,
-    alignment: alignment,
-    lineHeight: lineHeight,
-  };
 };
 
 export const extractDimensions = (element) => {
