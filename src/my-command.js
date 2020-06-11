@@ -81,7 +81,7 @@ document.pages.forEach((page) => {
 
 //TODO: refactori this down here sometimes, so its somewhere more fitting
 // stringify and remove unecessary double quotes
-tailwindConfig = JSON.stringify(theme, null, '\t').replace(/"([^"]+)":/g, '$1:');
+tailwindConfig = JSON.stringify(theme, null, 2).replace(/"([^"]+)":/g, '$1:');
 
 export default function () {
   const options = {
