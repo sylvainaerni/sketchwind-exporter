@@ -2,9 +2,9 @@ import BrowserWindow from 'sketch-module-web-view';
 import { getWebview } from 'sketch-module-web-view/remote';
 import UI from 'sketch/ui';
 import { theme } from './theme';
-import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth,extractBorderRadius, extractShadows, extractArtboardWidth } from './extractors';
-import { convertPxToREM, convertIntToPX, convertColor } from './helpers';
-import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius } from './themeHandlers';
+import { extractNaming, extractColorValue, extractDimensions, extractFontNaming, extractFontProperties, extractBorderWidth, extractBorderRadius, extractShadows, extractArtboardWidth, extractOpacityValue } from './extractors';
+import { convertPxToREM, convertIntToPX, convertColor, roundToTwo } from './helpers';
+import { addColor, addSpacing, addFont, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius, addOpacity } from './themeHandlers';
 
 const webviewIdentifier = 'tailwind-config-exporter.webview';
 
@@ -60,6 +60,10 @@ layerStyles.forEach((layer) => {
   if (item.category === 'color') {
     let color = extractColorValue(layer);
     if (color) addColor(item, convertColor(color));
+  }
+  if (item.category === 'opacity') {
+    let opacity = extractOpacityValue(layer);
+    if (opacity) addOpacity(item, roundToTwo(opacity));
   }
 });
 

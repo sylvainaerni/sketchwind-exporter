@@ -37,9 +37,10 @@ export const wrapDigitKey = (key) => {
   return key.replace(/([0-9]{1,9}[a-z].*)/gmi, wrap)
 }
 
-function roundToTwo(num) {
-  return +(Math.round(num + "e+2")  + "e-2");
+export const roundToTwo = (num) => {
+  return +(Math.round(num + "e+2") + "e-2");
 }
+
 
 function convertToSimpleHex(value) {
   return value.substring(0, 7)

@@ -31,8 +31,7 @@ export const addBorderRadius = (item, borderRadius) => {
   const name = item.variation.split(":")[1].trim();
   const value = borderRadius;
   if (!value || name === 'full') return
-
-    // create borderRadius object if it doesn't exist
+  // create borderRadius object if it doesn't exist
   if (!(name in theme.borderRadius)) theme.borderRadius[wrapDigitKey(name)] = {};
   theme.borderRadius[wrapDigitKey(name)] = value;
 };
@@ -90,4 +89,15 @@ export const addScreen = (item, width) => {
   if (!(name in theme.screens)) theme.screens[wrapDigitKey(name)] = {};
 
   theme.screens[wrapDigitKey(name)] = value;
+};
+
+export const addOpacity = (item, opacityValue) => {
+  if (!item.item) return;
+  const name = item.item;
+  const value = opacityValue;
+
+  // create opacity object if it doesn't exist
+  if (!(name in theme.opacity)) theme.opacity[wrapDigitKey(name)] = {};
+
+  theme.opacity[wrapDigitKey(name)] = value;
 };

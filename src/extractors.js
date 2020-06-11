@@ -110,3 +110,7 @@ export const extractDimensions = (element) => {
 export const extractArtboardWidth = (layer) => {
   return get(layer, 'frame.width') || null;
 };
+
+export const extractOpacityValue = (layer) => {
+  return get(layer, 'style.opacity') || null;
+};
