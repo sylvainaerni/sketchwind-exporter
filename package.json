@@ -1,7 +1,10 @@
 {
   "name": "tailwind-config-exporter",
   "version": "0.2.0",
-  "repository": "https://github.com/sylvainaerni/sketchwind-exporter",
+  "repository" : {
+    "type": "git",
+    "url": "git+https://github.com/sylvainaerni/sketchwind-exporter.git"
+  },
   "description": "Sketchwind Exporter is a Sketch plugin for exporting configuration files to the Tailwind CSS framework. This plugin is tightly related to the Sketchwind design system, a Sketch template based on Tailwind philosophy.",
   "engines": {
     "sketch": ">=3.0"
