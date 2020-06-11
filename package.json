@@ -1,7 +1,7 @@
 {
   "name": "tailwind-config-exporter",
-  "version": "0.2.0",
-  "repository" : {
+  "version": "0.3.0",
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/sylvainaerni/sketchwind-exporter.git"
   },
