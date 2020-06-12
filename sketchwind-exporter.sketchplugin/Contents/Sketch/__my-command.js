@@ -19949,7 +19949,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var webviewIdentifier = 'tailwind-config-exporter.webview';
+var webviewIdentifier = 'sketchwind-exporter.webview';
 
 var document = __webpack_require__(/*! sketch/dom */ "sketch/dom").getSelectedDocument();
 

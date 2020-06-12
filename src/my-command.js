@@ -6,7 +6,7 @@ import { extractNaming, extractColorValue, extractDimensions, extractFontNaming,
 import { convertPxToREM, convertIntToPX, convertColor, roundToTwo } from './helpers';
 import { addColor, addSpacing, addFontSize, addFontFamily, addBorderWidth, addShadow, addStroke, addScreen, addBorderRadius, addOpacity } from './themeHandlers';
 
-const webviewIdentifier = 'tailwind-config-exporter.webview';
+const webviewIdentifier = 'sketchwind-exporter.webview';
 
 let document = require('sketch/dom').getSelectedDocument();
 let symbols = document.getSymbols();

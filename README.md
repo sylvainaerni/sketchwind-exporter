@@ -6,20 +6,20 @@ Sketchwind Exporter is a Sketch plugin for exporting configuration files to the 
 
 1. Download [Sketchwind exporter .zip](https://github.com/sylvainaerni/sketchwind-exporter/archive/master.zip)
 2. Un-zip it
-3. Double-click on tailwind-config-exporter.sketchplugin
+3. Double-click on sketchwind-exporter.sketchplugin
 The plugin is now installed.
 
 ## Install Sketchwind template
 
 1. Download [Sketchwind .zip](https://github.com/sylvainaerni/sketchwind/archive/master.zip)
 2. Install Inter fonts family (go to `assets/fonts`)
-3. Open the `Sketchwind Design system.sketch` file 
+3. Open the `Sketchwind Design system.sketch` file
 
 ## How to use Sketchwind exporter
 
 1. In your Sketchwind template, do all adaptations you need in your design
-2. In your Sketch menu, go to `Sketchwind/export Tailwind config` 
-3. A text file is generated. You can share this file with your frontender 
+2. In your Sketch menu, go to `Sketchwind/export Tailwind config`
+3. A text file is generated. You can share this file with your frontender
 4. Copy-paste the data directly in a `tailwind.config.js` file
 Done. Most of the design assets are defined in Tailwind now.
 
