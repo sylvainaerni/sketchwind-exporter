@@ -80,7 +80,7 @@ document.pages.forEach((page) => {
   });
 });
 
-//TODO: refactori this down here sometimes, so its somewhere more fitting
+//TODO: refactor this down here sometimes, so its somewhere more fitting
 // stringify and remove unecessary double quotes
 tailwindConfig = JSON.stringify(theme, null, 2).replace(/"([^"]+)":/g, '$1:');
 
