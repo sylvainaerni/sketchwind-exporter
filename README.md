@@ -1,16 +1,32 @@
 # Sketchwind-exporter
-Sketchwind Exporter is a Sketch plugin for exporting configuration files to the Tailwind CSS framework. This plugin is tightly related to the [Sketchwind design system](https://github.com/sylvainaerni/sketchwind), a Sketch template based on Tailwind philosophy.
 
+Sketchwind Exporter is a Sketch plugin for exporting configuration files to the Tailwind CSS framework. This plugin is tightly related to the [Sketchwind design system](https://github.com/sylvainaerni/sketchwind), a Sketch template based on Tailwind philosophy.
 
 ## Installation
 
-- [Download](../../releases/latest/download/tailwind-config-exporter.sketchplugin.zip) the latest release of the plugin
-- Un-zip
-- Double-click on tailwind-config-exporter.sketchplugin
+1. Download [Sketchwind exporter .zip](https://github.com/sylvainaerni/sketchwind-exporter/archive/master.zip)
+2. Un-zip it
+3. Double-click on tailwind-config-exporter.sketchplugin
+The plugin is now installed.
+
+## Install Sketchwind template
+
+1. Download [Sketchwind .zip](https://github.com/sylvainaerni/sketchwind/archive/master.zip)
+2. Install Inter fonts family (go to `assets/fonts`)
+3. Open the `Sketchwind Design system.sketch` file 
+
+## How to use Sketchwind exporter
+
+1. In your Sketchwind template, do all adaptations you need in your design
+2. In your Sketch menu, go to `Sketchwind/export Tailwind config` 
+3. A text file is generated. You can share this file with your frontender 
+4. Copy-paste the data directly in a `tailwind.config.js` file
+Done. Most of the design assets are defined in Tailwind now.
+
 
 ## Development Guide
-
-_This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._
+If you want to contribute developping this plugin, here are some tips to install the project.
+This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md).
 
 ### Usage
 
