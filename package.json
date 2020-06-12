@@ -1,18 +1,18 @@
 {
-  "name": "tailwind-config-exporter",
+  "name": "sketchwind-exporter",
   "version": "0.4.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sylvainaerni/sketchwind-exporter.git"
   },
-  "description": "Sketchwind Exporter generates Tailwind configuration files from your Sketchwind template",
+  "description": "Sketchwind Exporter generates Tailwind configuration files directly from your Sketchwind template",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "tailwind-config-exporter",
+    "name": "sketchwind-exporter",
     "manifest": "src/manifest.json",
-    "main": "tailwind-config-exporter.sketchplugin",
+    "main": "sketchwind-exporter.sketchplugin",
     "assets": [
       "assets/**/*"
     ],
