@@ -2,28 +2,28 @@ import { theme } from './theme';
 import { convertPxToREM, convertToRgba, wrapDigitKey, convertIntToPX } from './helpers';
 
 export const addColor = (item, colorValue) => {
-  let name = item.item;
+  let name = wrapDigitKey(item.item);
   const variation = item.variation;
   const value = colorValue;
 
   if (name.startsWith('_')) name = name.slice(1);
   // create color object if color doesn't exist
-  if (!(name in theme.colors)) theme.colors[wrapDigitKey(name)] = {};
+  if (!(name in theme.colors)) theme.colors[name] = {};
   // create color variation if it exists
   if (variation) {
-    theme.colors[wrapDigitKey(name)][variation] = value;
+    theme.colors[name][variation] = value;
   } else {
-    theme.colors[wrapDigitKey(name)] = value;
+    theme.colors[name] = value;
   }
 };
 
 export const addSpacing = (item, spacingValue) => {
   if (!item.item) return;
-  const name = item.item;
+  const name = wrapDigitKey(item.item);
   const value = spacingValue;
   // create spacing object if it doesn't exist
-  if (!(name in theme.spacing)) theme.spacing[wrapDigitKey(name)] = {};
-  theme.spacing[wrapDigitKey(name)] = value;
+  if (!(name in theme.spacing)) theme.spacing[name] = {};
+  theme.spacing[name] = value;
 };
 
 export const addBorderRadius = (item, borderRadius) => {

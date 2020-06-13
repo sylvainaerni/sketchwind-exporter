@@ -33,8 +33,7 @@ export const wrapDigitKey = (key) => {
   if (typeof key !== 'string') return key
   // wrap object keys with simple quotes
   // if they start with a digit followed by a char
-  function wrap(value) { return `'${value}'`}
-  return key.replace(/([0-9]{1,9}[a-z].*)/gmi, wrap)
+  return key.replace(/-./g, x=>x.toUpperCase()[1])
 }
 
 export const roundToTwo = (num) => {
