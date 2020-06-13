@@ -20,7 +20,7 @@
       "sketchwind.my-command-identifier"
     ]
   },
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Sketchwind Exporter generates Tailwind configuration files directly from your Sketchwind template",
   "name": "sketchwind-exporter",
   "identifier": "sketchwind-exporter",

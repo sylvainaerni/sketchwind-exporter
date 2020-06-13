@@ -20166,17 +20166,18 @@ var addSpacing = function addSpacing(item, spacingValue) {
 };
 var addBorderRadius = function addBorderRadius(item, borderRadius) {
   if (!item.variation) return;
-  var name = item.variation.split(":")[1].trim();
+  var name = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(item.variation.split(":")[1].trim());
   var value = borderRadius;
   if (!value || name === 'full') return; // create borderRadius object if it doesn't exist
 
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = value;
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius[name] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderRadius[name] = value;
 };
 var addShadow = function addShadow(name, shadowValue) {
-  if (!name) return; // create boxShadow object if it doesn't exist
+  if (!name) return;
+  var shadowName = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name); // create boxShadow object if it doesn't exist
 
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)]; // convert rrggbbaa colors to rgba
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow[shadowName]; // convert rrggbbaa colors to rgba
 
   var regex = /#[0-9a-f]{8}/gi;
   var convertedShadowValue = shadowValue.replace(regex, _helpers__WEBPACK_IMPORTED_MODULE_1__["convertToRgba"]);
@@ -20185,56 +20186,60 @@ var addShadow = function addShadow(name, shadowValue) {
     convertedShadowValue = "inset ".concat(convertedShadowValue);
   }
 
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = convertedShadowValue;
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].boxShadow[shadowName] = convertedShadowValue;
 }; // todo: erase objects in other functions too, this is easier to read
 // also todo: add the initialization of the modulat object, like border width in the function which adds them!!!!!!
 
 var addBorderWidth = function addBorderWidth(name, width) {
   if (!name || !width) return;
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = width;
+  var borderName = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name);
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth[borderName] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].borderWidth[borderName] = width;
 };
 var addStroke = function addStroke(name, width) {
-  if (!name || !width) return; // create strokeWidth object if it doesn't exist
+  if (!name || !width) return;
+  var strokeName = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name); // create strokeWidth object if it doesn't exist
 
   if (!_theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth = {
     0: 0
   };
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = width;
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth[strokeName] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].strokeWidth[strokeName] = width;
 };
 var addFontSize = function addFontSize(fontStyleName, fontProperties) {
   if (!fontStyleName) return;
+  var name = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontStyleName);
   var fontSize = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertPxToREM"])(fontProperties.fontSize); // if the lineheight is zero then we dont bother with a conversion
 
   var lineHeight = fontProperties.lineHeight ? Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["convertPxToREM"])(fontProperties.lineHeight) : null;
-  if (!(fontStyleName in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontStyleName)] = {}; // we want either sm: ['14px', '20px'], or sm:'14px',
+  if (!(fontStyleName in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize[name] = {}; // we want either sm: ['14px', '20px'], or sm:'14px',
   // this depends on the existance of the lineheight
   // ternary, if the new font has a lineheight generate the array object,
   // otherwise just add the font as string (god i wish this was typed)
 
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontStyleName)] = lineHeight ? [fontSize, lineHeight] : fontSize;
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontSize[name] = lineHeight ? [fontSize, lineHeight] : fontSize;
 };
 var addFontFamily = function addFontFamily(fontCustomName, fontFamily) {
   if (!fontCustomName) return;
-  if (!(fontCustomName in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontCustomName)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontCustomName)] = [fontFamily];
+  var name = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(fontCustomName);
+  if (!(fontCustomName in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily[name] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].fontFamily[name] = [fontFamily];
 };
 var addScreen = function addScreen(item, width) {
   if (!item.item) return;
-  var name = item.item;
+  var name = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(item.item);
   var value = width; // create screens object if it doesn't exist
 
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = value;
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens[name] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].screens[name] = value;
 };
 var addOpacity = function addOpacity(item, opacityValue) {
   if (!item.item) return;
-  var name = item.item;
+  var name = Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(item.item);
   var value = opacityValue; // create opacity object if it doesn't exist
 
-  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = {};
-  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity[Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["wrapDigitKey"])(name)] = value;
+  if (!(name in _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity)) _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity[name] = {};
+  _theme__WEBPACK_IMPORTED_MODULE_0__["theme"].opacity[name] = value;
 };
 
 /***/ }),
