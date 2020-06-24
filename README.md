@@ -4,9 +4,10 @@ Sketchwind Exporter is a Sketch plugin for exporting configuration files to the 
 
 ## Installation
 
-1. Download [Sketchwind exporter .zip](https://github.com/sylvainaerni/sketchwind-exporter/archive/master.zip)
-2. Un-zip it
-3. Double-click on sketchwind-exporter.sketchplugin
+1. Go to the [latest release page](https://github.com/sylvainaerni/sketchwind-exporter/releases/latest)
+2. Click on the *sketchwind-exporter.zip* asset
+3. Un-zip it
+4. Double-click on sketchwind-exporter.sketchplugin
 The plugin is now installed.
 
 ## Install Sketchwind template
